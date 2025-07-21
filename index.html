@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyData Türkiye - Community Brochure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .brochure {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 30px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.4rem;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .stat {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+            color: #ffa500;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .section {
+            padding: 60px 40px;
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #3498db, #9b59b6);
+            margin: 20px auto;
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-features {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            border-radius: 12px;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+            font-size: 20px;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .event-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            border-color: #3498db;
+        }
+
+        .event-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .event-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa500);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            margin-right: 20px;
+        }
+
+        .event-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .event-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .event-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .topic-tag {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #333;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .community-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .community-stat {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .community-stat:hover {
+            transform: translateY(-5px);
+        }
+
+        .community-stat-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: white;
+        }
+
+        .community-stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            display: block;
+        }
+
+        .community-stat-label {
+            color: #666;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        .join-section {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .join-section h2 {
+            color: white;
+        }
+
+        .join-section h2::after {
+            background: linear-gradient(90deg, #ffa500, #ff6b6b);
+        }
+
+        .join-description {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        .join-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .join-button {
+            padding: 20px 40px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffa500 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(255,107,107,0.3);
+        }
+
+        .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255,107,107,0.4);
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        .footer-link {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .stats {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .join-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brochure">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo">Py</div>
+                <h1>PyData Türkiye</h1>
+                <p class="subtitle">Empowering Data Science Community in Turkey</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="stat-number">200+</span>
+                        <span class="stat-label">Global Chapters</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">200k+</span>
+                        <span class="stat-label">Global Members</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Open</span>
+                        <span class="stat-label">Source Focus</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div class="section">
+            <h2>About Our Community</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>PyData Türkiye is a local chapter of the global PyData community, dedicated to bringing together data enthusiasts, professionals, and researchers from Turkey. We focus on the use and development of open-source data science tools and libraries in Python.</p>
+                    
+                    <p>By fostering an inclusive and collaborative environment, PyData Türkiye aims to facilitate knowledge sharing, networking, and the advancement of data science skills through meetups, workshops, and conferences.</p>
+                    
+                    <p>Whether you are a beginner or an experienced practitioner, PyData Türkiye provides a platform to learn, share, and grow in the field of data science.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">🐍</div>
+                        <span>Python-focused data science tools</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🌐</div>
+                        <span>Global PyData network connection</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🤝</div>
+                        <span>Inclusive community environment</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📚</div>
+                        <span>Educational workshops & meetups</span>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔬</div>
+                        <span>Research & industry collaboration</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="section">
+            <h2>Recent Events & Comprehensive Sessions</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🚀</div>
+                        <div class="event-title">Emerging Tech Conference</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>September 26, 2024</strong> - Full-day conference with 9 expert sessions:
+                        <br><br>
+                        <strong>Keynote:</strong> Dr. Işıl Berkün - Technical Skills and Career Advancement<br>
+                        <strong>Sessions:</strong> RAG (Dr. Emir Öztürk), HPC Systems (Oğuzhan B. Tekin), Python Patterns (Evgenii Ignatev), Production ML (Burak Karakan), Industrial AI (Redzhep Mehmedov), Personalization (Peyman Beyranvand), Supply Chain (Emin M. Eraydın), Testing (Yury Aksenov)
+                    </div>
+                    <div class="event-topics">
+                        <span class="topic-tag">AI Career Development</span>
+                        <span class="topic-tag">RAG Systems</span>
+                        <span class="topic-tag">HPC</span>
+                        <span class="topic-tag">Production ML</span>
+                        <span class="topic-tag">Industrial AI</span>
+                        <span class="topic-tag">Supply Chain</span>
+                        <span class="topic-tag">Python Best Practices</span>
+                        <span class="topic-tag">Testing Strategies</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🤖</div>
+                        <div class="event-title">Model Context Protocol</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>March 26, 2025</strong> - Expert presentation by EPAM Latvia professional covering Model Context Protocol principles, implementation strategies, and real-world applications for enhancing AI model interactions. Industry professional with hands-on experience implementing solutions at scale.
+                    </div>
+                    <div class="event-topics">
+                        <span class="topic-tag">AI Frameworks</span>
+                        <span class="topic-tag">Model Integration</span>
+                        <span class="topic-tag">EPAM Expertise</span>
+                        <span class="topic-tag">Production Implementation</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">👁️</div>
+                        <div class="event-title">YOLO Workshop</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>June 26, 2025</strong> - Complete hands-on workshop: "Train Custom Object Detection and Segmentation Models with YOLO (v8-v11)". Covers entire workflow from dataset preparation to training, validation, and export. Perfect for beginners and enthusiasts with step-by-step guidance and real-world examples.
+                    </div>
+                    <div class="event-topics">
+                        <span class="topic-tag">Computer Vision</span>
+                        <span class="topic-tag">YOLO v8-v11</span>
+                        <span class="topic-tag">Object Detection</span>
+                        <span class="topic-tag">Segmentation</span>
+                        <span class="topic-tag">Hands-on Training</span>
+                        <span class="topic-tag">Dataset Preparation</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🎯</div>
+                        <div class="event-title">Diverse Topics Coverage</div>
+                    </div>
+                    <div class="event-description">
+                        Our events span the full spectrum of data science: from career development and Python best practices to cutting-edge AI applications, industrial implementations, recommendation systems, supply chain optimization, and rigorous testing methodologies. International speakers bring global perspectives.
+                    </div>
+                    <div class="event-topics">
+                        <span class="topic-tag">Global Speakers</span>
+                        <span class="topic-tag">Career Guidance</span>
+                        <span class="topic-tag">Practical Applications</span>
+                        <span class="topic-tag">Industry Solutions</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Featured Speakers Section -->
+        <div class="section">
+            <h2>Our Expert Speaker Network</h2>
+            <div class="events-grid">
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🎯</div>
+                        <div class="event-title">Dr. Işıl Berkün - Intel</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Keynote:</strong> "Technical Skills and Career Advancement in AI and Data Science" - Leading expert in AI career development and technical skill advancement strategies.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🔍</div>
+                        <div class="event-title">Dr. Emir Öztürk - Trakya University </div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Introduction to Retrieval Augmented Generation (RAG)" - Expert presentation on cutting-edge AI-powered information retrieval and generation systems.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">⚡</div>
+                        <div class="event-title">Oğuzhan B. Tekin - EPAM</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Use of HPC systems in the world of data" - Deep dive into high-performance computing applications for large-scale data processing.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🐍</div>
+                        <div class="event-title">Evgenii Ignatev - EPAM</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Python semi-patterns of style and structure" - Advanced Python programming patterns and best practices for clean, maintainable code.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🚀</div>
+                        <div class="event-title">Burak Karakan - Bruin</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Practical tips & tricks for production ML pipelines" - Industry insights on deploying and maintaining machine learning systems at scale.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🏭</div>
+                        <div class="event-title">Redzhep Mehmedov - Sunrise Robotics</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Converging Simulations and Reality: Advancing Industrial AI" - Exploring the intersection of simulation technologies and real-world industrial applications.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🛒</div>
+                        <div class="event-title">Peyman Beyranvand - Trendyol </div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Candidate Recall with Two Tower Approach for Personalized Product" - Advanced recommendation systems and personalization strategies.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">📦</div>
+                        <div class="event-title">Emin M. Eraydın - Blue Yonder</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Big Data, Bigger Impact: Optimizing Supply Chain Efficiency" - Data-driven approaches to supply chain optimization and logistics.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🧪</div>
+                        <div class="event-title">Yury Aksenov - EPAM</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "The ways to cook data fixtures for a pipeline's test" - Testing strategies and data fixture management for robust data pipelines.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">🤖</div>
+                        <div class="event-title">Antons Kranga - EPAM</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Session:</strong> "Model Context Protocol" - Framework principles, implementation strategies, and real-world applications for AI model interactions.
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-header">
+                        <div class="event-icon">👁️</div>
+                        <div class="event-title">Serkan Peldek - EPAM</div>
+                    </div>
+                    <div class="event-description">
+                        <strong>Workshop:</strong> "Train Custom Object Detection and Segmentation Models with YOLO (v8-v11)" - Complete hands-on training from dataset preparation to model deployment.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Community Stats -->
+        <div class="section">
+            <h2>Our Community Impact</h2>
+            <div class="community-stats">
+                <div class="community-stat">
+                    <div class="community-stat-icon">🎯</div>
+                    <span class="community-stat-number">11</span>
+                    <div class="community-stat-label">Expert Speakers Featured</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-icon">🚀</div>
+                    <span class="community-stat-number">12+</span>
+                    <div class="community-stat-label">Technical Sessions Delivered</div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-icon">🌍</div>
+                    <span class="community-stat-number">~400</span>
+                    <div class="community-stat-label">Members </div>
+                </div>
+                <div class="community-stat">
+                    <div class="community-stat-icon">🔬</div>
+                    <span class="community-stat-number">3</span>
+                    <div class="community-stat-label">Major Events (2024-2025)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Join Section -->
+        <div class="section join-section">
+            <h2>Join Our Growing Community</h2>
+            <p class="join-description">
+                Connect with fellow data enthusiasts, learn from industry experts, and contribute to the open-source data science ecosystem. Whether you're just starting your data science journey or you're a seasoned professional, there's a place for you in PyData Türkiye.
+            </p>
+            <div class="join-buttons">
+                <a href="https://www.meetup.com/pydata-turkiye/" class="join-button">Join Our Meetup</a>
+                <a href="http://pydata.org/code-of-conduct.html" class="join-button">Code of Conduct</a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-links">
+                <a href="https://pydata.org/" class="footer-link">Global PyData</a>
+                <a href="https://numfocus.org/" class="footer-link">NumFOCUS</a>
+                <a href="mailto:leah@numfocus.org" class="footer-link">Contact</a>
+            </div>
+            <p>&copy; 2025 PyData Türkiye. Part of the NumFOCUS educational program.</p>
+            <p>PyData is a 501(c)3 non-profit organization promoting open-source data science tools.</p>
+        </div>
+    </div>
+</body>
+</html>
